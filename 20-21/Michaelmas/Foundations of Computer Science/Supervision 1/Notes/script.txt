@@ -1,0 +1,152 @@
+
+Here is a summary of what we discussed in the first FoCS supervision. 
+
+
+# let f1 (a, b) = 1 + 3 * (a + b);;
+val f1 : int * int -> int = <fun>
+# let f2 a b = 1 + 3 * (a + b);;
+val f2 : int -> int -> int = <fun>
+
+f2 is a "curried" function.  Often useful! 
+
+# List.map (f2 6) [1;2;3;4;5;6];;
+- : int list = [22; 25; 28; 31; 34; 37]
+
+Where the uncurried version can be more awkward: 
+
+# List.map (fun x -> f1(6, x)) [1;2;3;4;5;6];;
+- : int list = [22; 25; 28; 31; 34; 37]
+
+Let's write functions to curry and uncurry! 
+
+# let curry f a b = f (a, b) ;;
+val curry : ('a * 'b -> 'c) -> 'a -> 'b -> 'c = <fun>
+
+Perhaps this is more clear:
+
+# let curry f = fun a -> fun b -> f (a, b) ;;
+val curry : ('a * 'b -> 'c) -> 'a -> 'b -> 'c = <fun>
+
+Now the other direction: 
+
+# let uncurry f (a, b) = f a b;;;
+val uncurry : ('a -> 'b -> 'c) -> 'a * 'b -> 'c = <fun>
+
+Or making the function returned more explicit:
+
+# let uncurry f = fun (a, b) -> f a b;;
+val uncurry : ('a -> 'b -> 'c) -> 'a * 'b -> 'c = <fun>
+
+# List.map (curry f1 6) [1;2;3;4;5;6];;
+- : int list = [22; 25; 28; 31; 34; 37]
+
+
+fold_left and fold_right are important list manipulation functions. 
+
+# List.fold_left;;
+- : ('a -> 'b -> 'a) -> 'a -> 'b list -> 'a = <fun>
+
+Let's write our own! 
+
+# let rec fold_left f acc l = match l with [] -> acc | a :: rest -> fold_left f (f a acc) rest ;;
+val fold_left : ('a -> 'b -> 'b) -> 'b -> 'a list -> 'b = <fun>
+
+Test it: 
+# fold_left (fun a -> fun b -> a + b) 0 [1;2;3;4;5;6];;
+- : int = 21
+
+The idea is that
+
+   fold_left f acc [a1; a2; ... an] = f an (f a(n-1), (... f(a1, acc)) ...)
+
+Note that fold_left is tail recursive!! 
+
+There is also a fold_right
+
+# List.fold_right ;; 
+- : ('a -> 'b -> 'b) -> 'a list -> 'b -> 'b = <fun>
+
+Let's write our own
+
+# let rec fold_right f l init = match l with [] -> init | a :: rest -> f a (fold_right f rest init);;
+val fold_right : ('a -> 'b -> 'b) -> 'a list -> 'b -> 'b = <fun>
+
+# fold_right (fun a -> fun b -> a + b) [1;2;3;4;5;6] 0;;
+- : int = 21
+
+Let's look at trees. 
+
+# type 'a tree = Leaf | Node of 'a * 'a tree * 'a tree;;
+type 'a tree = Leaf | Node of 'a * 'a tree * 'a tree
+
+
+The type 'a option can be used in cases where you might not have a result to return
+and you don't want to raise an exception. It has constructors None and Some(a).
+
+
+# let rec search_tree p t =
+   match t with
+   | Leaf -> None
+   | Node(a, l, r) ->
+     if p a
+     then Some a
+     else (match search_tree p l with
+           | None ->  search_tree p r
+           | s    -> s);; 
+
+val search_tree : ('a -> bool) -> 'a tree -> 'a option = <fun>
+
+Here's a map for trees: 
+
+# let rec map_tree f t = match t with Leaf -> Leaf | Node(a, l, r) -> Node(f a, map_tree f l, map_tree f r);;
+val map_tree : ('a -> 'b) -> 'a tree -> 'b tree = <fun>
+
+Here's a depth function
+
+# let rec depth t = match t with Leaf -> 0 | Node(_, l, r) -> 1 + (max (depth l) (depth r));;
+val depth : 'a tree -> int = <fun>
+
+How about folding trees? 
+
+# let rec fold_tree f init t = match t with Leaf -> init | Node(a, l, r) -> f a (fold_tree f init l) (fold_tree f init r) ;;
+val fold_tree : ('a -> 'b -> 'b -> 'b) -> 'b -> 'a tree -> 'b = <fun>
+
+So we could sum the elements of an integer tree:
+
+# let sum_tree = fold_tree (fun a -> fun x -> fun y -> a + x + y) 0;; 
+val sum_tree : int tree -> int = <fun>
+
+Can we use fold_tree to redefine map_tree?   Let's try!
+
+# let map_tree' f = fold_tree (fun a -> fun x -> fun y -> Node (f a, x, y)) Leaf;; 
+val map_tree' : ('a -> 'b) -> 'a tree -> 'b tree = <fun>
+   
+That seems to have worked, but it is not exactly readable!
+
+Note that map_tree' is defined by applying a polymorphic function to another one.
+Sometimes this leads to strange results in OCaml.
+That's when you get these strange "underline types" of the form '_a
+in the type of your code.   For example, 
+
+# let test = map_tree (fun a -> (a, a));;
+val test : '_a tree -> ('_a * '_a) tree = <fun>
+
+(Note the strange type variable '_a in the type!) 
+
+# test (Node(18, Leaf, Leaf));;
+- : (int * int) tree = Node ((18, 18), Leaf, Leaf)
+
+# test (Node(true, Leaf, Leaf));; 
+Characters 11-15:
+  test (Node(true, Leaf, Leaf));;
+             ^^^^
+Error: This expression has type bool but an expression was expected of type int
+
+What's going on?  The '_a is not a real polymorphic type variable.  It gets
+bound to the type of the first use of the function, in this case int.
+And then it never changes.  This is done to perserve type safety, it seems.
+However, it is something of a mystery. 
+
+
+
+

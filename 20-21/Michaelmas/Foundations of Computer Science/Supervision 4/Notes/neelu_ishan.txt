@@ -1,0 +1,68 @@
+tgg22@agda:~/working/kings/supervision/FoCS/2020/set4$ ocaml
+        OCaml version 4.04.2
+
+# type 'a tree = Lf | Br of 'a tree;;
+type 'a tree = Lf | Br of 'a tree
+# type 'a tree = Lf | Br of 'a tree * 'a tree;;
+type 'a tree = Lf | Br of 'a tree * 'a tree
+# type 'a tree = Lf | Br of 'a * 'a tree * 'a tree;;
+type 'a tree = Lf | Br of 'a * 'a tree * 'a tree
+# let make_trees v tl1 tl2 = List.map (fun t2 -> List.map (fun t1 -> Br(v, t1, t2)) tl1) tl2 ;; 
+val make_trees : 'a -> 'a tree list -> 'a tree list -> 'a tree list list =
+  <fun>
+# let make_trees v tl1 tl2 = List.concat (List.map (fun t2 -> List.map (fun t1 -> Br(v, t1, t2)) tl1) tl2) ;; 
+val make_trees : 'a -> 'a tree list -> 'a tree list -> 'a tree list = <fun>
+# let rec anti_inorder l =
+  let rec  anti (l1, l2) = 
+   match l2 with
+    | []     -> [] 			     
+    | v::l3 -> 
+       (make_trees v (anti_inorder (List.rev l1)) (anti_inorder l3)) @  anti (v::l1, l3)
+  in 									      
+  match l with
+  | [] ->  [Lf] | _ -> anti ([],l);;									
+                val anti_inorder : 'a list -> 'a tree list = <fun>
+# anti_inorder [1;2;3];;
+- : int tree list =
+[Br (1, Lf, Br (2, Lf, Br (3, Lf, Lf)));
+ Br (1, Lf, Br (3, Br (2, Lf, Lf), Lf));
+ Br (2, Br (1, Lf, Lf), Br (3, Lf, Lf));
+ Br (3, Br (1, Lf, Br (2, Lf, Lf)), Lf);
+ Br (3, Br (2, Br (1, Lf, Lf), Lf), Lf)]
+# anti_inorder [1;1;1];;
+- : int tree list =
+[Br (1, Lf, Br (1, Lf, Br (1, Lf, Lf)));
+ Br (1, Lf, Br (1, Br (1, Lf, Lf), Lf));
+ Br (1, Br (1, Lf, Lf), Br (1, Lf, Lf));
+ Br (1, Br (1, Lf, Br (1, Lf, Lf)), Lf);
+ Br (1, Br (1, Br (1, Lf, Lf), Lf), Lf)]
+# anti_inorder [1;1;1;1;1];;
+- : int tree list =
+[Br (1, Lf, Br (1, Lf, Br (1, Lf, Br (1, Lf, Br (1, Lf, Lf)))));
+ Br (1, Lf, Br (1, Lf, Br (1, Lf, Br (1, Br (1, Lf, Lf), Lf))));
+ Br (1, Lf, Br (1, Lf, Br (1, Br (1, Lf, Lf), Br (1, Lf, Lf))));
+ Br (1, Lf, Br (1, Lf, Br (1, Br (1, Lf, Br (1, Lf, Lf)), Lf)));
+ Br (1, Lf, Br (1, Lf, Br (1, Br (1, Br (1, Lf, Lf), Lf), Lf)));
+ Br (1, Lf, Br (1, Br (1, Lf, Lf), Br (1, Lf, Br (1, Lf, Lf))));
+ Br (1, Lf, Br (1, Br (1, Lf, Lf), Br (1, Br (1, Lf, Lf), Lf)));
+ Br (1, Lf, Br (1, Br (1, Lf, Br (1, Lf, Lf)), Br (1, Lf, Lf)));
+ Br (1, Lf, Br (1, Br (1, Br (1, Lf, Lf), Lf), Br (1, Lf, Lf)));
+ Br (1, Lf, Br (1, Br (1, Lf, Br (1, Lf, Br (1, Lf, Lf))), Lf));
+ Br (1, Lf, Br (1, Br (1, Lf, Br (1, Br (1, Lf, Lf), Lf)), Lf));
+ Br (1, Lf, Br (1, Br (1, Br (1, Lf, Lf), Br (1, Lf, Lf)), Lf));
+ Br (1, Lf, Br (1, Br (1, Br (1, Lf, Br (1, Lf, Lf)), Lf), Lf));
+ Br (1, Lf, Br (1, Br (1, Br (1, Br (1, Lf, Lf), Lf), Lf), Lf));
+ Br (1, Br (1, Lf, Lf), Br (1, Lf, Br (1, Lf, Br (1, Lf, Lf))));
+ Br (1, Br (1, Lf, Lf), Br (1, Lf, Br (1, Br (1, Lf, Lf), Lf)));
+ Br (1, Br (1, Lf, Lf), Br (1, Br (1, Lf, Lf), Br (1, Lf, Lf)));
+ Br (1, Br (1, Lf, Lf), Br (1, Br (1, Lf, Br (1, Lf, Lf)), Lf));
+ Br (1, Br (1, Lf, Lf), Br (1, Br (1, Br (...), ...), ...)); ...]
+# let rec ones n = match n with 1 -> [1] | _ -> 1 :: (ones (n-1));;
+val ones : int -> int list = <fun>
+
+# let count l = List.length (anti_inorder l);;
+val count : 'a list -> int = <fun>
+# List.map count (List.map ones [1;2;3;4;5;6;7;8;9;10]); 
+  ;;
+- : int list = [1; 2; 5; 14; 42; 132; 429; 1430; 4862; 16796]
+# (* Catalan numbers!!! *) 

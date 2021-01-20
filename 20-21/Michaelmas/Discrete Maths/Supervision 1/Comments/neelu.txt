@@ -1,0 +1,31 @@
+Proofs -Basic
+---------------
+3. It is good when you introduce a variable to say if you mean 'for all' or 'for some / there exists' (e.g. 'for some integer k' here)
+
+4. When you try to prove something involving an existential quantifier, you don't assume it exists (since you want to show that). For example, here instead of 'assume that z is a real number, such that..', you can say just 'Let z=(y-x)/2. Then z is a real numbers and ...'
+
+5b. What are a,b,c,d? Introducing a new variable always write what it represents.
+
+7. You have nicely proven that the statement you wrote. However, you were asked to prove there exists UNIQUE such y. Therefore, you still need to start by some y_0 satisfying the equation and show that y_0=x/(2-x).
+
+Core 
+-----------
+3. This works when n>0. However, for n=0 it is not true that 2|1.
+
+8. Great proof! You also caught the case where m=0, so it is not true that pq=1, which most people missed.
+
+10b. What you use is that P^#(2) implies P(0), P(1) and P(2), not the other way around (which also holds) to conclude that P^#(2) is false.
+
+Optional
+------------------
+
+Great work!
+
+On numbers
+------------
+3. To prove the equalities here, you need to use use/show two things: That rem(a,b)=r is the unique integer such that
+-> there exists an integer m, such that a=mb+r
+-> r is between 0 and b-1 (inclusive)
+
+
+
