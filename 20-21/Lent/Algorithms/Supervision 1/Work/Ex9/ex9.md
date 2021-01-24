@@ -1,0 +1,3 @@
+# Exercise 9
+
+The smallest one will end up at its correct position faster. The insertsort algorithm starts from the beginning and places every new element in its rightful position so far. If the smallest and largest are in the middle, then the smallest will be placed at the start, and even though the largest will be placed at the end of the array so far, that is not the end of the overall array as the elements coming after it in the unsorted array will need to go before it, while the start of the subarray is the start of the overall array, so the smallest one is placed in the right place (at the start) of the sorted array as soon as it comes up in the unsorted subarray and will then not be moved again by the algorithm.
