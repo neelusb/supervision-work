@@ -30,7 +30,6 @@ def merge_sort(a):
             array_to_add_from = 1
         else:
             array_to_add_from = 1 if a1[i1] < a2[i2] else 2
-            a3[i3] = min(a1[i1], a2[i2])  # updates i1 or i2 too
 
         if array_to_add_from == 1:
             a3[i3] = a1[i1]
