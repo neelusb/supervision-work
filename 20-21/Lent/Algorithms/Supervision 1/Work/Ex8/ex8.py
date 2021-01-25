@@ -7,13 +7,13 @@ def binary_insert_sort(a):
         upper_i = k
         i = 0
 
-        while lower_i != upper_i: # while lower and upper bounds are not the same
+        while lower_i != upper_i:  # while lower and upper bounds are not equal
             i = int((lower_i + upper_i) / 2)
             if a[i] < a[k]:
-                lower_i = i + 1 # a[k] goes to the right
+                lower_i = i + 1  # a[k] goes to the right
             else:
-                upper_i = i # a[k] goes to the left
-        
+                upper_i = i  # a[k] goes to the left
+
         # END BINARY PARTITIONING PORTION
 
         if i != k:
@@ -22,11 +22,9 @@ def binary_insert_sort(a):
                 j = i + k - 2 - tmp_j
                 a[j + 1] = a[j]
             a[i] = tmp
-    
+
     return a
 
 
-x = [7,3,-2,11,14,-8,0,77,2,63,102, 2]
-# x = [3,2,1,4]
-
-print(binary_insert_sort(x))        
+x = [7, 3, -2, 11, 14, -8, 0, 77, 2, 63, 102, 2]
+print(binary_insert_sort(x))

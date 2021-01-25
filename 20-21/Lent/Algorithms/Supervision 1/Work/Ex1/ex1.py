@@ -3,7 +3,8 @@ def insert_sort(a):
 
     PRECONDITION: list a contains len(a) integer values.
 
-    POSTCONDITION: returns the same integer values as in array a, but now they are sorted in ascending order.
+    POSTCONDITION: returns the same integer values as in array a, but now they 
+    are sorted in ascending order.
     """
 
     for i in range(1, len(a)):
@@ -15,11 +16,12 @@ def insert_sort(a):
 
         while j >= 0 and a[j] > current:
             j = j - 1
-        
+
         a[j + 2:i + 1] = a[j + 1:i]
         a[j + 1] = current
 
     return a
 
 
-print(insert_sort([3,7,6,4,8,9,2]))
+x = [7, 3, -2, 11, 14, -8, 0, 77, 2, 63, 102, 2]
+print(insert_sort(x))
