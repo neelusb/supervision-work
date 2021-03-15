@@ -22,9 +22,12 @@ This means that we only need to look at the probabilities of states at the curre
 
 \section*{HMM Artificial data}
 \begin{enumerate}
-    \item 
-    \item 
-    \item 
+    \item You need the list of states, list of observations, and the transition and emission probability matrices.
+    \item Start at the start state. Then, generate the Markov chain. This can be done by using the transition matrix, starting at the start state and randomly selecting a next state with the probability distribution provided by the transition matrix, and then continuing until the end state has been reacher.
+
+    Then, the observations can be generated in a similar way by going through the Markov chain (except the start and end states) and randomly selecting an observation for each state according to the distributions stipulated by the emission matrix.
+    
+    \item This can occur when there are multiple end states rather than just one. For example, in the weather example with a start state and hidden states Raining and Not Raining, there could be two end states: ``There is flooding" and ``There is no flooding" by the end of the month.
 \end{enumerate}
 
 \section*{Smoothing in HMMs}
