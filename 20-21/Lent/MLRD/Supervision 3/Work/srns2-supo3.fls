@@ -31,11 +31,27 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 INPUT /home/sbneelu/University/supervision-work/20-21/Lent/MLRD/Supervision 3/Work/srns2-supo3.aux
 INPUT /home/sbneelu/University/supervision-work/20-21/Lent/MLRD/Supervision 3/Work/srns2-supo3.aux
 OUTPUT /home/sbneelu/University/supervision-work/20-21/Lent/MLRD/Supervision 3/Work/srns2-supo3.aux
+INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+INPUT /usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+INPUT /usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
@@ -57,8 +73,24 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 OUTPUT /home/sbneelu/University/supervision-work/20-21/Lent/MLRD/Supervision 3/Work/srns2-supo3.pdf
 INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+INPUT /home/sbneelu/University/supervision-work/20-21/Lent/MLRD/Supervision 3/Work/./images/3-1.jpg
+INPUT ./images/3-1.jpg
+INPUT ./images/3-1.jpg
+INPUT /home/sbneelu/University/supervision-work/20-21/Lent/MLRD/Supervision 3/Work/./images/3-2.jpg
+INPUT ./images/3-2.jpg
+INPUT ./images/3-2.jpg
+INPUT /home/sbneelu/University/supervision-work/20-21/Lent/MLRD/Supervision 3/Work/./images/3-3.jpg
+INPUT ./images/3-3.jpg
+INPUT ./images/3-3.jpg
+INPUT /home/sbneelu/University/supervision-work/20-21/Lent/MLRD/Supervision 3/Work/./images/3-4.jpg
+INPUT ./images/3-4.jpg
+INPUT ./images/3-4.jpg
+INPUT /home/sbneelu/University/supervision-work/20-21/Lent/MLRD/Supervision 3/Work/./images/3-5.jpg
+INPUT ./images/3-5.jpg
+INPUT ./images/3-5.jpg
 INPUT /home/sbneelu/University/supervision-work/20-21/Lent/MLRD/Supervision 3/Work/srns2-supo3.aux
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
