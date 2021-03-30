@@ -11,6 +11,7 @@
 \title{Operating Systems Supervision 3}
 \date{\vspace{-5ex}}
 
+
 \begin{document}
 
 \maketitle
@@ -41,7 +42,7 @@
 
     \end{enumerate}
     \item \begin{enumerate}
-        \item TODO
+        \item 
         \item This only achieves the intended purpose to a certain extent. It mitigates against accidental file deletions as if a file is deleted on a filesystem but exists on a previous snapshot, the hard link count will not be zero so the file will not be deleted entirely. However it does not provide a backup to edits. The hard links all point to the same file on disk, so if a file is edited, all hard links to it (i.e. all snapshots) point to the edited version. The major advantage of this method is that it saves on disk space as each file isn't duplicated every day (which would take huge amounts of space) and new hard links are just created. A major disadvantage, as mentioned, is that this does not mitigate against accidental file edits. Also, once a day may not be frequent enough and doing this once every 5 minutes, for example, may not be feasible as it may take longer than 5 minutes to recursively copy all the files (or even longer than a day).
     \end{enumerate}
     \item The formula Unix uses for priority scheduling of jobs gives jobs which previously used less CPU time higher priority, i.e. I/O-intensive jobs.
@@ -60,7 +61,7 @@
         \item executes program (execve)
         \item becomes a zombie process and terminates (exit)
     \end{enumerate}
-    TODO DIAGRAM HERE
+    \includegraphics[scale=0.2]{6.jpg}
 \end{enumerate}
 
 \section{Tripos Question 2012/II/4}
