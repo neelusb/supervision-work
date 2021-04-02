@@ -137,6 +137,23 @@ This does not work on graphs with cycles. For example, consider a diamond-shaped
 \end{enumerate}
 
 \section*{Random graphs and metrics}
-TODO
+\subsection*{Distribution of degree of nodes}
+In an Erdős–Rényi graph, every pair of edges has an equal probability of having an edge connecting it, and no node is any more likely to have an edge than another, so the degree of nodes in an Erdős–Rényi graph is expected to be uniformly distributed.
+
+In a Watts-Strogatz graph, nodes start of connected around a circle and then may have these connections replaced by connections to other nodes, but each node has an equal likelihood of having an edge rewired to it, so the degree of nodes in a Watts-Strogatz graph is expected to be uniformly distributed.
+
+In a collaboration network, there are some people who have collaborated with a lot of other people, and some people will have collaborated with far fewer people, and there is less likely to be an in between. Also, people are probably more likely to have collaborated with fewer people than more people. Therefore, the expected distribution of degree of nodes is a high number of nodes with low degree, very few with mid-range degree, and somewhere between these for high degree.
+
+\subsection*{Number of connected components}
+
+In an Erdős–Rényi graph, there are likely to be several connected components a there are likely some pairs of nodes that have no paths between them. In a Watts-Strogatz graph, there are likely to be fewer connected components as it starts with a single connected component and then performs rewiring, which is less likely to result in broken paths than just randomly assigning edges. If $k >> ln(n)$ then it is guaranteed that the graph will be connected, i.e. there will be a single connected component. In a collaboration network, there is likely a single connected component as people in the scientific community likely collaborate with a widge range of people who collaborate with other people, and so on.
+
+\subsection*{Distribution of shortest paths}
+
+In an Erdős–Rényi graph, the distribution of lengths of shortest paths is likely to be normally distributed as there will be very few pairs of edges that are directly connected and very few that are very distantly connected but most will be in between. This is also the case for Watts-Strogatz graphs. In a collaboration network, the normal distribution is likely skewed to the right as fewer people will have collaborated with a lot of people, as mentioned before.
+
+\subsection*{Extent of clustering}
+
+In an Erdős–Rényi graph, since all edges are equally likely to exist, you wouldn't expect any particular clustering. Of course some clustering would occur by chance but not a huge amount. This is also the case for a Watts-Strogatz graph, although slightly more clustering is expected as the graph starts off as a single connected component with no clustering but the first reqired edge introduces a small amount of clustering, which may increase but may also decrease back to nothing. In a collaboration network, a large amount of clustering is expected, as people are likely to collaborate with other people within their own university, country, or field, with some links to scientists abroad or in other fields.
 
 \end{document}
